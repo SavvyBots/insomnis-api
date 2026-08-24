@@ -35,7 +35,6 @@ export const COPY = {
 		legal:
 			'Servicio independiente. No estamos afiliados, asociados ni respaldados por Vinted, Wallapop, Milanuncios ni Todocolección.',
 		resourcesLabel: 'Recursos',
-		docsLink: 'Documentación',
 		vintedLink: 'API Vinted',
 		wallapopLink: 'API Wallapop',
 	},
@@ -75,7 +74,6 @@ export const COPY = {
 		legal:
 			'Independent service. We are not affiliated with, associated with, or endorsed by Vinted, Wallapop, Milanuncios or Todocolección.',
 		resourcesLabel: 'Resources',
-		docsLink: 'Documentation',
 		vintedLink: 'Vinted API',
 		wallapopLink: 'Wallapop API',
 	},
