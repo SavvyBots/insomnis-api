@@ -1,0 +1,20 @@
+---
+import Landing from '../../components/Landing.astro';
+import { COPY } from '../../data/landing';
+import Layout from '../../layouts/Layout.astro';
+
+const alternates = [
+	{ hreflang: 'es' as const, href: 'https://insomnis.dev/' },
+	{ hreflang: 'en' as const, href: 'https://insomnis.dev/en/' },
+	{ hreflang: 'x-default' as const, href: 'https://insomnis.dev/' },
+];
+---
+
+<Layout
+	title={COPY.en.metaTitle}
+	description={COPY.en.metaDescription}
+	lang="en"
+	alternates={alternates}
+>
+	<Landing price={49} defaultLang="en" />
+</Layout>

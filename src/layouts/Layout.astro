@@ -3,14 +3,29 @@ interface Props {
 	title?: string;
 	description?: string;
 	lang?: 'es' | 'en';
+	alternates?: Array<{
+		hreflang: 'es' | 'en' | 'x-default';
+		href: string;
+	}>;
+	structuredData?: Record<string, unknown>;
 }
 
 const {
 	title = 'Listing Stream | Anuncios nuevos en tiempo real',
 	description =
-		'Recibe en tiempo real los anuncios nuevos de los principales marketplaces de segunda mano en España.',
+		'Recibe en tiempo real los anuncios nuevos de los principales marketplaces de segunda mano.',
 	lang = 'es',
+	alternates = [],
+	structuredData,
 } = Astro.props;
+
+const site = Astro.site ?? new URL('https://insomnis.dev');
+const canonicalUrl = new URL(Astro.url.pathname, site);
+const socialImageUrl = new URL('/og/listing-stream.png', site);
+const structuredDataJson = structuredData
+	? JSON.stringify(structuredData).replace(/</g, '\\u003c')
+	: undefined;
+const locale = lang === 'es' ? 'es_ES' : 'en_US';
 ---
 
 <!doctype html>
@@ -19,8 +34,31 @@ const {
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="description" content={description} />
+		<meta name="robots" content="index, follow" />
 		<meta name="theme-color" content="#0c0e0d" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="canonical" href={canonicalUrl} />
+		<link rel="sitemap" href={new URL('/sitemap-index.xml', site)} />
+		{
+			alternates.map(({ hreflang, href }) => (
+				<link rel="alternate" hreflang={hreflang} href={href} />
+			))
+		}
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Listing Stream" />
+		<meta property="og:locale" content={locale} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:image" content={socialImageUrl} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content="Listing Stream — anuncios nuevos en tiempo real" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={socialImageUrl} />
+		<meta name="twitter:image:alt" content="Listing Stream — anuncios nuevos en tiempo real" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
 		<link
@@ -28,6 +66,11 @@ const {
 			rel="stylesheet"
 		/>
 		<meta name="generator" content={Astro.generator} />
+		{
+			structuredDataJson && (
+				<script type="application/ld+json" set:html={structuredDataJson}></script>
+			)
+		}
 		<title>{title}</title>
 	</head>
 	<body>

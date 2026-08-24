@@ -1,0 +1,255 @@
+---
+interface Props {
+	eyebrow: string;
+	title: string;
+	lead: string;
+}
+
+const { eyebrow, title, lead } = Astro.props;
+---
+
+<main class="guide">
+	<div class="guide-shell">
+		<header class="guide-header">
+			<a class="guide-brand" href="/" aria-label="Listing Stream, inicio">
+				<span aria-hidden="true">■</span>
+				<span>listing-stream</span>
+			</a>
+			<a class="guide-contact" href="mailto:insomnisdev@gmail.com">Solicitar acceso</a>
+		</header>
+
+		<article class="guide-article">
+			<p class="guide-eyebrow">{eyebrow}</p>
+			<h1>{title}</h1>
+			<p class="guide-lead">{lead}</p>
+			<slot />
+		</article>
+
+		<footer class="guide-footer">
+			<nav aria-label="Recursos">
+				<a href="/">Inicio</a>
+				<a href="/docs/">Documentación</a>
+				<a href="/vinted-api/">API Vinted</a>
+				<a href="/wallapop-api/">API Wallapop</a>
+			</nav>
+			<p>
+				Servicio independiente. No estamos afiliados, asociados ni respaldados por Vinted,
+				Wallapop, Milanuncios ni Todocolección.
+			</p>
+		</footer>
+	</div>
+</main>
+
+<style>
+	.guide {
+		--background: #0c0e0d;
+		--panel: #101312;
+		--border: #232825;
+		--text: #e4e9e5;
+		--text-muted: #aab4ae;
+		--text-dim: #78847d;
+		--accent: oklch(80% 0.14 155);
+		--accent-bright: oklch(90% 0.14 155);
+
+		min-height: 100vh;
+		min-height: 100svh;
+		padding: 48px 28px 88px;
+		background: var(--background);
+		color: var(--text);
+		font-family: 'IBM Plex Mono', ui-monospace, monospace;
+		font-size: 15px;
+		line-height: 1.75;
+	}
+
+	.guide-shell {
+		width: 100%;
+		max-width: 820px;
+		margin: 0 auto;
+	}
+
+	.guide-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 24px;
+	}
+
+	.guide-brand {
+		display: inline-flex;
+		align-items: baseline;
+		gap: 10px;
+		color: var(--text);
+		font-weight: 600;
+		letter-spacing: 0.04em;
+	}
+
+	.guide-brand span:first-child {
+		color: var(--accent);
+	}
+
+	.guide-contact {
+		border: 1px solid var(--accent);
+		padding: 7px 12px;
+		font-size: 12px;
+	}
+
+	.guide-article {
+		max-width: 720px;
+		margin-top: 84px;
+	}
+
+	.guide-eyebrow {
+		margin: 0 0 14px;
+		color: var(--accent);
+		font-size: 12px;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	.guide-article h1 {
+		max-width: 18ch;
+		margin: 0;
+		font-size: clamp(2rem, 7vw, 3rem);
+		font-weight: 500;
+		letter-spacing: -0.025em;
+		line-height: 1.13;
+		text-wrap: balance;
+	}
+
+	.guide-lead {
+		max-width: 63ch;
+		margin: 24px 0 48px;
+		color: var(--text-muted);
+		font-size: 17px;
+		text-wrap: pretty;
+	}
+
+	.guide-article :global(h2) {
+		margin: 48px 0 14px;
+		font-size: 16px;
+		font-weight: 500;
+		line-height: 1.4;
+	}
+
+	.guide-article :global(p) {
+		max-width: 68ch;
+		margin: 0 0 18px;
+		color: var(--text-muted);
+		text-wrap: pretty;
+	}
+
+	.guide-article :global(strong) {
+		color: var(--text);
+		font-weight: 500;
+	}
+
+	.guide-article :global(code) {
+		padding: 2px 5px;
+		background: color-mix(in oklch, var(--accent) 7%, var(--panel));
+		color: var(--accent);
+		font: inherit;
+		font-size: 0.92em;
+	}
+
+	.guide-article :global(.endpoint) {
+		border: 1px solid var(--border);
+		padding: 14px 16px;
+		display: block;
+		overflow-x: auto;
+		background: var(--panel);
+		color: var(--accent);
+		font-size: 13px;
+		line-height: 1.6;
+		white-space: nowrap;
+	}
+
+	.guide-article :global(.code-example) {
+		max-width: 100%;
+		margin: 22px 0 24px;
+		overflow: auto;
+		border: 1px solid var(--border);
+		background: var(--panel);
+		font-size: 12px;
+		line-height: 1.65;
+		scrollbar-color: var(--text-dim) var(--panel);
+	}
+
+	.guide-article :global(.code-example pre.shiki) {
+		min-width: max-content;
+		margin: 0;
+		padding: 18px 20px;
+		font: inherit;
+		line-height: inherit;
+		tab-size: 2;
+	}
+
+	.guide-article :global(.code-example pre.shiki code) {
+		padding: 0;
+		background: transparent;
+		color: inherit;
+	}
+
+	.guide-article :global(.guide-callout) {
+		border-left: 2px solid var(--accent);
+		margin-top: 36px;
+		padding: 16px 18px;
+		background: color-mix(in oklch, var(--accent) 5%, var(--panel));
+	}
+
+	.guide-article :global(.guide-callout p:last-child) {
+		margin-bottom: 0;
+	}
+
+	.guide-article :global(.guide-callout a) {
+		font-weight: 500;
+	}
+
+	.guide-footer {
+		max-width: 720px;
+		margin-top: 80px;
+		border-top: 1px solid var(--border);
+		padding-top: 24px;
+		color: var(--text-dim);
+		font-size: 12px;
+	}
+
+	.guide-footer nav {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px 16px;
+	}
+
+	.guide-footer p {
+		max-width: 70ch;
+		margin: 14px 0 0;
+	}
+
+	.guide a {
+		color: var(--accent);
+		text-decoration: none;
+	}
+
+	.guide a:hover {
+		color: var(--accent-bright);
+	}
+
+	.guide a:focus-visible,
+	.guide-article :global(.code-example pre.shiki):focus-visible {
+		outline: 2px solid var(--accent);
+		outline-offset: 3px;
+	}
+
+	@media (max-width: 540px) {
+		.guide {
+			padding: 32px 18px 64px;
+		}
+
+		.guide-article {
+			margin-top: 56px;
+		}
+
+		.guide-article :global(.code-example pre.shiki) {
+			padding: 16px;
+		}
+	}
+</style>

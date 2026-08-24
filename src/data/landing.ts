@@ -1,11 +1,12 @@
 export const COPY = {
 	es: {
-		metaTitle: 'Listing Stream | Anuncios nuevos en tiempo real',
+		metaTitle:
+			'Listing Stream — WebSocket en tiempo real para Vinted, Wallapop, Milanuncios y Todocolección',
 		metaDescription:
-			'Recibe en tiempo real los anuncios nuevos de Vinted, Wallapop, Milanuncios y Todocolección mediante una única conexión WebSocket.',
+			'Recibe anuncios nuevos en tiempo real de Vinted, Wallapop, Milanuncios y Todocolección por WebSocket. Filtra por plataforma y elige raw o normalized.',
 		cmd: 'listen --new-listings',
-		h1: 'Un WebSocket. Cada anuncio nuevo, al instante.',
-		sub: 'Te conectas a nuestro servicio por WebSocket y escuchas las publicaciones nuevas de los principales marketplaces de segunda mano en España. Eliges qué plataformas quieres escuchar.',
+		h1: 'WebSocket en tiempo real para Vinted, Wallapop, Milanuncios y Todocolección',
+		sub: 'Te conectas a nuestro servicio por WebSocket y escuchas las publicaciones nuevas de los principales marketplaces de segunda mano. Eliges qué plataformas quieres escuchar.',
 		cta: 'Escríbeme',
 		mkHead: 'Plataformas soportadas',
 		marketStatus: 'activo',
@@ -33,14 +34,19 @@ export const COPY = {
 		],
 		legal:
 			'Servicio independiente. No estamos afiliados, asociados ni respaldados por Vinted, Wallapop, Milanuncios ni Todocolección.',
+		resourcesLabel: 'Recursos',
+		docsLink: 'Documentación',
+		vintedLink: 'API Vinted',
+		wallapopLink: 'API Wallapop',
 	},
 	en: {
-		metaTitle: 'Listing Stream | New listings in real time',
+		metaTitle:
+			'Listing Stream — Real-time WebSocket for Vinted, Wallapop, Milanuncios and Todocolección',
 		metaDescription:
-			'Get new listings from Vinted, Wallapop, Milanuncios and Todocolección in real time through a single WebSocket connection.',
+			'Get new listings from Vinted, Wallapop, Milanuncios and Todocolección in real time over WebSocket. Filter by platform and choose raw or normalized.',
 		cmd: 'listen --new-listings',
-		h1: 'One WebSocket. Every new listing, in real time.',
-		sub: 'Connect to our service over WebSocket and listen to new listings from the main second-hand marketplaces in Spain. You choose which platforms to listen to.',
+		h1: 'Real-time WebSocket for Vinted, Wallapop, Milanuncios and Todocolección',
+		sub: 'Connect to our service over WebSocket and listen to new listings from leading second-hand marketplaces. You choose which platforms to listen to.',
 		cta: 'Email me',
 		mkHead: 'Supported platforms',
 		marketStatus: 'live',
@@ -68,6 +74,10 @@ export const COPY = {
 		],
 		legal:
 			'Independent service. We are not affiliated with, associated with, or endorsed by Vinted, Wallapop, Milanuncios or Todocolección.',
+		resourcesLabel: 'Resources',
+		docsLink: 'Documentation',
+		vintedLink: 'Vinted API',
+		wallapopLink: 'Wallapop API',
 	},
 } as const;
 

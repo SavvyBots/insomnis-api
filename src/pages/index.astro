@@ -2,8 +2,39 @@
 import Landing from '../components/Landing.astro';
 import { COPY } from '../data/landing';
 import Layout from '../layouts/Layout.astro';
+
+const alternates = [
+	{ hreflang: 'es' as const, href: 'https://insomnis.dev/' },
+	{ hreflang: 'en' as const, href: 'https://insomnis.dev/en/' },
+	{ hreflang: 'x-default' as const, href: 'https://insomnis.dev/' },
+];
+
+const structuredData = {
+	'@context': 'https://schema.org',
+	'@type': 'SoftwareApplication',
+	name: 'Listing Stream',
+	url: 'https://insomnis.dev/',
+	applicationCategory: 'DeveloperApplication',
+	applicationSubCategory: 'Real-time listing API',
+	operatingSystem: 'Web',
+	description:
+		'WebSocket en tiempo real para anuncios nuevos de Vinted, Wallapop, Milanuncios y Todocolección.',
+	offers: {
+		'@type': 'Offer',
+		url: 'https://insomnis.dev/',
+		price: '49',
+		priceCurrency: 'EUR',
+		availability: 'https://schema.org/InStock',
+	},
+};
 ---
 
-<Layout title={COPY.es.metaTitle} description={COPY.es.metaDescription} lang="es">
+<Layout
+	title={COPY.es.metaTitle}
+	description={COPY.es.metaDescription}
+	lang="es"
+	alternates={alternates}
+	structuredData={structuredData}
+>
 	<Landing price={49} defaultLang="es" />
 </Layout>

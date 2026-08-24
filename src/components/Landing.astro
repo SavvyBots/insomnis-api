@@ -28,24 +28,22 @@ const integrationExamples = await Promise.all(
 				<span>listing-stream</span>
 			</div>
 
-			<div class="language-switcher" role="group" aria-label="Idioma / Language">
-				<button
-					type="button"
+			<nav class="language-switcher" aria-label="Idioma / Language">
+				<a
 					class="language-button"
-					data-language="es"
+					href="/"
 					lang="es"
 					aria-label="Español"
-					aria-pressed={defaultLang === 'es'}>ES</button
+					aria-current={defaultLang === 'es' ? 'page' : undefined}>ES</a
 				>
-				<button
-					type="button"
+				<a
 					class="language-button"
-					data-language="en"
+					href="/en/"
 					lang="en"
 					aria-label="English"
-					aria-pressed={defaultLang === 'en'}>EN</button
+					aria-current={defaultLang === 'en' ? 'page' : undefined}>EN</a
 				>
-			</div>
+			</nav>
 		</header>
 
 		<section class="hero" aria-labelledby="hero-title">
@@ -191,21 +189,20 @@ const integrationExamples = await Promise.all(
 				<a href="mailto:insomnisdev@gmail.com">insomnisdev@gmail.com</a>
 				<span class="cursor" aria-hidden="true">_</span>
 			</div>
+			<nav class="resource-links" aria-label={copy.resourcesLabel}>
+				<a href="/docs/">{copy.docsLink}</a>
+				<a href="/vinted-api/">{copy.vintedLink}</a>
+				<a href="/wallapop-api/">{copy.wallapopLink}</a>
+			</nav>
 			<p data-copy="legal">{copy.legal}</p>
 		</footer>
 	</div>
 </main>
 
 <script>
-	import { COPY, type LandingLanguage } from '../data/landing';
-
-	const isLanguage = (value: string | null | undefined): value is LandingLanguage =>
-		value === 'es' || value === 'en';
-
 	const landing = document.querySelector<HTMLElement>('[data-landing]');
 
 	if (landing) {
-		const languageButtons = landing.querySelectorAll<HTMLButtonElement>('[data-language]');
 		const integrationTabs = landing.querySelectorAll<HTMLButtonElement>('[data-integration-tab]');
 		const integrationPanels = landing.querySelectorAll<HTMLElement>('[data-integration-panel]');
 
@@ -230,72 +227,6 @@ const integrationExamples = await Promise.all(
 
 			if (moveFocus) activeTab?.focus();
 		};
-
-		const applyLanguage = (language: LandingLanguage) => {
-			const copy = COPY[language];
-
-			landing.querySelectorAll<HTMLElement>('[data-copy]').forEach((element) => {
-				const key = element.dataset.copy as keyof typeof copy | undefined;
-				if (!key) return;
-
-				const value = copy[key];
-				if (typeof value === 'string') element.textContent = value;
-			});
-
-			landing.querySelectorAll<HTMLElement>('[data-include-index]').forEach((element) => {
-				const index = Number(element.dataset.includeIndex);
-				const value = copy.includes[index];
-				if (value) element.textContent = value;
-			});
-
-			landing.querySelectorAll<HTMLElement>('[data-market-status]').forEach((element) => {
-				element.textContent = copy.marketStatus;
-			});
-
-			landing.querySelectorAll<HTMLElement>('[data-copy-aria-label]').forEach((element) => {
-				const key = element.dataset.copyAriaLabel as keyof typeof copy | undefined;
-				if (!key) return;
-
-				const value = copy[key];
-				if (typeof value === 'string') element.setAttribute('aria-label', value);
-			});
-
-			languageButtons.forEach((button) => {
-				button.setAttribute('aria-pressed', String(button.dataset.language === language));
-			});
-
-			document.documentElement.lang = language;
-			document.title = copy.metaTitle;
-			document
-				.querySelector<HTMLMetaElement>('meta[name="description"]')
-				?.setAttribute('content', copy.metaDescription);
-
-			try {
-				localStorage.setItem('listing-stream-language', language);
-			} catch {
-				// The language switch still works when storage is unavailable.
-			}
-		};
-
-		let initialLanguage: LandingLanguage = isLanguage(landing.dataset.defaultLang)
-			? landing.dataset.defaultLang
-			: 'es';
-
-		try {
-			const savedLanguage = localStorage.getItem('listing-stream-language');
-			if (isLanguage(savedLanguage)) initialLanguage = savedLanguage;
-		} catch {
-			// Keep the server-rendered default language when storage is unavailable.
-		}
-
-		applyLanguage(initialLanguage);
-
-		languageButtons.forEach((button) => {
-			button.addEventListener('click', () => {
-				const language = button.dataset.language;
-				if (isLanguage(language)) applyLanguage(language);
-			});
-		});
 
 		integrationTabs.forEach((tab, index) => {
 			tab.addEventListener('click', () => {
@@ -410,12 +341,14 @@ const integrationExamples = await Promise.all(
 		min-height: 38px;
 		border: 1px solid var(--border);
 		padding: 4px 10px;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
 		background: var(--panel);
 		color: var(--text-dim);
 		font: inherit;
 		font-size: 13px;
 		line-height: 1.7;
-		cursor: pointer;
 		transition:
 			border-color 150ms ease,
 			color 150ms ease,
@@ -427,7 +360,7 @@ const integrationExamples = await Promise.all(
 		border-color: var(--text-dim);
 	}
 
-	.language-button[aria-pressed='true'] {
+	.language-button[aria-current='page'] {
 		border-color: var(--accent);
 		background: color-mix(in oklch, var(--accent) 8%, var(--panel));
 		color: var(--accent);
@@ -774,6 +707,13 @@ const integrationExamples = await Promise.all(
 	.terminal-contact {
 		align-items: baseline;
 		gap: 8px;
+	}
+
+	.resource-links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px 16px;
+		font-size: 12px;
 	}
 
 	.cursor {

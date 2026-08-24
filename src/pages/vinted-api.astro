@@ -1,0 +1,88 @@
+---
+import GuidePage from '../components/GuidePage.astro';
+import { highlightCode } from '../lib/highlight-json';
+import Layout from '../layouts/Layout.astro';
+
+const pythonExample = await highlightCode(
+	`import asyncio
+from websockets.asyncio.client import connect
+
+
+async def main():
+    async with connect(
+        "wss://fructus.insomnis.site/feed?format=normalized&platforms=vinted",
+        additional_headers={"Authorization": "Bearer YOUR_API_KEY"},
+    ) as feed:
+        async for event in feed:
+            print(event)
+
+
+asyncio.run(main())`,
+	'python',
+);
+---
+
+<Layout
+	title="API Vinted en tiempo real por WebSocket | Listing Stream"
+	description="Recibe anuncios nuevos de Vinted en tiempo real mediante WebSocket, con filtro por plataforma y formato raw o normalized."
+	lang="es"
+>
+	<GuidePage
+		eyebrow="API Vinted"
+		title="WebSocket para anuncios nuevos de Vinted"
+		lead="Recibe eventos de Vinted en tiempo real para crear alertas, paneles, análisis o automatizaciones propias."
+	>
+		<p>
+			Listing Stream permite recibir anuncios nuevos de Vinted a través de una conexión WebSocket.
+			Es una integración dirigida a desarrolladores que quieren construir herramientas sobre
+			publicaciones recientes sin gestionar una conexión distinta por marketplace.
+		</p>
+		<p>
+			Listing Stream es un servicio independiente. No es una API oficial de Vinted y no está
+			afiliado, asociado ni respaldado por Vinted.
+		</p>
+
+		<h2>Escucha solo Vinted</h2>
+		<p>Añade <code>platforms=vinted</code> a la URL de conexión:</p>
+		<code class="endpoint"
+			>wss://fructus.insomnis.site/feed?format=normalized&amp;platforms=vinted</code
+		>
+		<p>
+			Autentica el socket durante el handshake mediante{' '}
+			<code>Authorization: Bearer YOUR_API_KEY</code>. Este ejemplo recibe cada mensaje entrante y
+			lo deja listo para que lo proceses en tu aplicación.
+		</p>
+		<div class="code-example" set:html={pythonExample}></div>
+
+		<h2>Una estructura común con <code>normalized</code></h2>
+		<p>
+			El formato normalizado organiza los datos del anuncio bajo un esquema común. Así puedes
+			tratar un evento de Vinted como uno de Wallapop, Milanuncios o Todocolección cuando amplíes la
+			integración.
+		</p>
+		<p>
+			Los eventos incluyen, cuando están disponibles, identificador, título, marca, precio en
+			céntimos, moneda, URL, imágenes, envío, ubicación, categoría y valores normalizados para
+			título, marca o categoría.
+		</p>
+		<p>
+			En la integración actual de Vinted no se extrae la descripción. Por ello,
+			<code>description</code> y <code>normalized_description</code> pueden llegar como
+			<code>null</code>; tu código debe contemplarlo.
+		</p>
+
+		<h2>Conserva los campos propios con <code>raw</code></h2>
+		<p>
+			Si necesitas trabajar con la forma original de la respuesta de Vinted, usa
+			<code>format=raw</code>. Este formato es útil para datos específicos de la fuente, pero no
+			debes asumir que sus nombres de campo coincidan con los de otras plataformas.
+		</p>
+		<code class="endpoint"
+			>wss://fructus.insomnis.site/feed?format=raw&amp;platforms=vinted</code
+		>
+
+		<div class="guide-callout">
+			<p><a href="mailto:insomnisdev@gmail.com">Conecta tu aplicación al feed de Vinted →</a></p>
+		</div>
+	</GuidePage>
+</Layout>

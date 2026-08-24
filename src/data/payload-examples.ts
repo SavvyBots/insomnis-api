@@ -16,7 +16,7 @@ export const NORMALIZED_PAYLOAD_EXAMPLE = {
 			url_photo: ['https://images.example/vinted/iphone-13-pro-max-256gb-01.webp'],
 			shipping: true,
 			location: {
-				label: 'Madrid, España',
+				label: 'Ciudad de ejemplo',
 				latitude: null,
 				longitude: null,
 			},

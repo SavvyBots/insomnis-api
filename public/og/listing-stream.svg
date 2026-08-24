@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title description">
+  <title id="title">Listing Stream</title>
+  <desc id="description">WebSocket en tiempo real para anuncios nuevos de marketplaces.</desc>
+  <rect width="1200" height="630" fill="#0c0e0d"/>
+  <rect x="72" y="72" width="1056" height="486" rx="8" fill="#101312" stroke="#232825" stroke-width="2"/>
+  <rect x="112" y="120" width="22" height="22" fill="#55d790"/>
+  <text x="150" y="138" fill="#e4e9e5" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="24" font-weight="600" letter-spacing="2">LISTING-STREAM</text>
+  <line x1="112" y1="182" x2="1088" y2="182" stroke="#232825" stroke-width="2"/>
+  <text x="112" y="260" fill="#e4e9e5" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="52" font-weight="500">Anuncios nuevos,</text>
+  <text x="112" y="324" fill="#e4e9e5" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="52" font-weight="500">en tiempo real.</text>
+  <text x="112" y="382" fill="#aab4ae" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="24">Vinted · Wallapop · Milanuncios · Todocolección</text>
+  <rect x="112" y="436" width="976" height="72" rx="4" fill="#0c0e0d" stroke="#232825" stroke-width="2"/>
+  <text x="142" y="481" fill="#55d790" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="24">wss://</text>
+  <text x="228" y="481" fill="#e4e9e5" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="24">fructus.insomnis.site/feed?format=normalized</text>
+</svg>

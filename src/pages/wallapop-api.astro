@@ -1,0 +1,84 @@
+---
+import GuidePage from '../components/GuidePage.astro';
+import { highlightCode } from '../lib/highlight-json';
+import Layout from '../layouts/Layout.astro';
+
+const nodeExample = await highlightCode(
+	`import WebSocket from "ws";
+
+const feed = new WebSocket(
+  "wss://fructus.insomnis.site/feed?format=normalized&platforms=wallapop",
+  { headers: { Authorization: "Bearer YOUR_API_KEY" } },
+);
+
+feed.on("message", (event) => {
+  console.log(JSON.parse(event.toString()));
+});`,
+	'javascript',
+);
+---
+
+<Layout
+	title="API Wallapop en tiempo real por WebSocket | Listing Stream"
+	description="Integra anuncios nuevos de Wallapop en tu aplicación mediante un WebSocket con autenticación Bearer y formatos raw o normalized."
+	lang="es"
+>
+	<GuidePage
+		eyebrow="API Wallapop"
+		title="WebSocket para anuncios nuevos de Wallapop"
+		lead="Incorpora publicaciones recientes de Wallapop a alertas, buscadores, dashboards o automatizaciones internas."
+	>
+		<p>
+			Listing Stream permite recibir anuncios nuevos de Wallapop mediante una conexión WebSocket.
+			Está orientado a desarrolladores que necesitan llevar publicaciones recientes a una herramienta
+			propia, ya sea para seguimiento, análisis de precios o procesos internos.
+		</p>
+		<p>
+			Se trata de un servicio independiente. No es una API oficial de Wallapop y no existe
+			afiliación, asociación ni respaldo por parte de Wallapop.
+		</p>
+
+		<h2>Conecta el feed de Wallapop</h2>
+		<p>Para limitar la conexión a Wallapop, usa este endpoint:</p>
+		<code class="endpoint"
+			>wss://fructus.insomnis.site/feed?format=normalized&amp;platforms=wallapop</code
+		>
+		<p>
+			Incluye la API key durante el handshake con{' '}
+			<code>Authorization: Bearer YOUR_API_KEY</code>. Tu cliente puede escuchar los eventos
+			entrantes y decidir cómo almacenarlos, mostrarlos o enviarlos a otros procesos.
+		</p>
+		<div class="code-example" set:html={nodeExample}></div>
+
+		<h2>Respuesta común para varias plataformas</h2>
+		<p>
+			Con <code>format=normalized</code>, los anuncios se entregan con una estructura de respuesta
+			común. Esto reduce el trabajo de integración si más adelante quieres recibir también anuncios
+			de Vinted, Milanuncios o Todocolección.
+		</p>
+		<p>
+			El evento normalizado incluye información útil como plataforma, identificador, título,
+			descripción cuando esté disponible, precio, moneda, URL del anuncio, imágenes, envío,
+			ubicación y categorías. Tu código debe seguir contemplando valores opcionales o nulos: no todas
+			las plataformas publican la misma información para cada anuncio.
+		</p>
+
+		<h2>Formato original de Wallapop</h2>
+		<p>
+			Cuando necesitas conservar la estructura propia de la plataforma, conecta con
+			<code>format=raw</code>. Raw devuelve la respuesta tal como se obtiene de Wallapop y es útil
+			para casos de uso propios de esa fuente.
+		</p>
+		<code class="endpoint"
+			>wss://fructus.insomnis.site/feed?format=raw&amp;platforms=wallapop</code
+		>
+		<p>
+			También puedes incorporar más fuentes al mismo socket separándolas por comas, por ejemplo
+			<code>platforms=wallapop,vinted</code>.
+		</p>
+
+		<div class="guide-callout">
+			<p><a href="mailto:insomnisdev@gmail.com">Solicita acceso al feed de Wallapop →</a></p>
+		</div>
+	</GuidePage>
+</Layout>
