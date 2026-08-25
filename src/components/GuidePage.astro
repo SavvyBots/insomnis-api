@@ -13,13 +13,13 @@ const { eyebrow, title, lead } = Astro.props;
 		<header class="guide-header">
 			<a class="guide-brand" href="/" aria-label="Listing Stream, inicio">
 				<img
-					class="guide-logo"
-					src="/logos/listing-stream.png"
-					width="1200"
-					height="300"
+					class="guide-mark"
+					src="/logos/listing-stream-mark.svg"
+					width="28"
+					height="15"
 					alt=""
-					decoding="async"
 				/>
+				<span class="guide-name">listing<span class="guide-separator">-</span>stream</span>
 			</a>
 			<a class="guide-contact" href="mailto:insomnisdev@gmail.com">Solicitar acceso</a>
 		</header>
@@ -82,12 +82,26 @@ const { eyebrow, title, lead } = Astro.props;
 	.guide-brand {
 		display: inline-flex;
 		align-items: center;
+		gap: 8px;
 	}
 
-	.guide-logo {
-		width: 210px;
-		height: auto;
+	.guide-mark {
+		width: 28px;
+		height: 15px;
 		display: block;
+	}
+
+	.guide-name {
+		color: var(--text);
+		font-size: 16px;
+		font-weight: 600;
+		letter-spacing: 0.04em;
+		line-height: 1;
+		white-space: nowrap;
+	}
+
+	.guide-separator {
+		color: #6ad895;
 	}
 
 	.guide-contact {
@@ -249,10 +263,6 @@ const { eyebrow, title, lead } = Astro.props;
 
 		.guide-article {
 			margin-top: 56px;
-		}
-
-		.guide-logo {
-			width: 190px;
 		}
 
 		.guide-article :global(.code-example pre.shiki) {

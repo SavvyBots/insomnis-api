@@ -4,7 +4,6 @@ export const COPY = {
 			'Listing Stream — WebSocket en tiempo real para Vinted, Wallapop, Milanuncios y Todocolección',
 		metaDescription:
 			'Recibe anuncios nuevos en tiempo real de Vinted, Wallapop, Milanuncios y Todocolección por WebSocket. Filtra por plataforma y elige raw o normalized.',
-		cmd: 'listen --new-listings',
 		h1: 'WebSocket en tiempo real para Vinted, Wallapop, Milanuncios y Todocolección',
 		sub: 'Te conectas a nuestro servicio por WebSocket y escuchas las publicaciones nuevas de los principales marketplaces de segunda mano. Eliges qué plataformas quieres escuchar.',
 		cta: 'Escríbeme',
@@ -43,7 +42,6 @@ export const COPY = {
 			'Listing Stream — Real-time WebSocket for Vinted, Wallapop, Milanuncios and Todocolección',
 		metaDescription:
 			'Get new listings from Vinted, Wallapop, Milanuncios and Todocolección in real time over WebSocket. Filter by platform and choose raw or normalized.',
-		cmd: 'listen --new-listings',
 		h1: 'Real-time WebSocket for Vinted, Wallapop, Milanuncios and Todocolección',
 		sub: 'Connect to our service over WebSocket and listen to new listings from leading second-hand marketplaces. You choose which platforms to listen to.',
 		cta: 'Email me',
