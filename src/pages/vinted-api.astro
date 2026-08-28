@@ -10,7 +10,7 @@ from websockets.asyncio.client import connect
 
 async def main():
     async with connect(
-        "wss://fructus.insomnis.site/feed?format=normalized&platforms=vinted",
+        "wss://vago.insomnis.dev/feed?format=normalized&platforms=vinted",
         additional_headers={"Authorization": "Bearer YOUR_API_KEY"},
     ) as feed:
         async for event in feed:
@@ -45,7 +45,7 @@ asyncio.run(main())`,
 		<h2>Escucha solo Vinted</h2>
 		<p>Añade <code>platforms=vinted</code> a la URL de conexión:</p>
 		<code class="endpoint"
-			>wss://fructus.insomnis.site/feed?format=normalized&amp;platforms=vinted</code
+				>wss://vago.insomnis.dev/feed?format=normalized&amp;platforms=vinted</code
 		>
 		<p>
 			Autentica el socket durante el handshake mediante{' '}
@@ -78,7 +78,7 @@ asyncio.run(main())`,
 			debes asumir que sus nombres de campo coincidan con los de otras plataformas.
 		</p>
 		<code class="endpoint"
-			>wss://fructus.insomnis.site/feed?format=raw&amp;platforms=vinted</code
+				>wss://vago.insomnis.dev/feed?format=raw&amp;platforms=vinted</code
 		>
 
 		<div class="guide-callout">

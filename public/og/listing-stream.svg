@@ -11,5 +11,5 @@
   <text x="112" y="382" fill="#aab4ae" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="24">Vinted · Wallapop · Milanuncios · Todocolección</text>
   <rect x="112" y="436" width="976" height="72" rx="4" fill="#0c0e0d" stroke="#232825" stroke-width="2"/>
   <text x="142" y="481" fill="#55d790" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="24">wss://</text>
-  <text x="228" y="481" fill="#e4e9e5" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="24">fructus.insomnis.site/feed?format=normalized</text>
+  <text x="228" y="481" fill="#e4e9e5" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="24">vago.insomnis.dev/feed?format=normalized</text>
 </svg>

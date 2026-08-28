@@ -1,5 +1,5 @@
 const STREAM_URL =
-	'wss://fructus.insomnis.site/feed?format=raw&platforms=vinted,wallapop';
+	'wss://vago.insomnis.dev/feed?format=raw&platforms=vinted,wallapop';
 
 export const INTEGRATION_EXAMPLES = [
 	{

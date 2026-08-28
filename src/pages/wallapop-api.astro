@@ -7,7 +7,7 @@ const nodeExample = await highlightCode(
 	`import WebSocket from "ws";
 
 const feed = new WebSocket(
-  "wss://fructus.insomnis.site/feed?format=normalized&platforms=wallapop",
+  "wss://vago.insomnis.dev/feed?format=normalized&platforms=wallapop",
   { headers: { Authorization: "Bearer YOUR_API_KEY" } },
 );
 
@@ -41,7 +41,7 @@ feed.on("message", (event) => {
 		<h2>Conecta el feed de Wallapop</h2>
 		<p>Para limitar la conexión a Wallapop, usa este endpoint:</p>
 		<code class="endpoint"
-			>wss://fructus.insomnis.site/feed?format=normalized&amp;platforms=wallapop</code
+				>wss://vago.insomnis.dev/feed?format=normalized&amp;platforms=wallapop</code
 		>
 		<p>
 			Incluye la API key durante el handshake con{' '}
@@ -70,7 +70,7 @@ feed.on("message", (event) => {
 			para casos de uso propios de esa fuente.
 		</p>
 		<code class="endpoint"
-			>wss://fructus.insomnis.site/feed?format=raw&amp;platforms=wallapop</code
+				>wss://vago.insomnis.dev/feed?format=raw&amp;platforms=wallapop</code
 		>
 		<p>
 			También puedes incorporar más fuentes al mismo socket separándolas por comas, por ejemplo
