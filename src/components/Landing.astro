@@ -9,7 +9,7 @@ interface Props {
 	defaultLang?: LandingLanguage;
 }
 
-const { price = 49, defaultLang = 'es' } = Astro.props;
+const { price = 149, defaultLang = 'es' } = Astro.props;
 const copy = COPY[defaultLang];
 const normalizedPayloadHtml = await highlightJson(NORMALIZED_PAYLOAD_EXAMPLE);
 const integrationExamples = await Promise.all(
